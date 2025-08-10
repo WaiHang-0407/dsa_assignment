@@ -1,6 +1,7 @@
+package utility;
 import java.util.Scanner;
 
-public class Utility {
+public class doctorUtility {
     public static int checkInt(Scanner intScanner, int min, int max){
         int input;
         System.out.print(": ");
@@ -20,4 +21,6 @@ public class Utility {
 
         return input;
     }
+
+    
 }

@@ -1,4 +1,6 @@
-public class Doctor implements AbstractFunction {
+package entity;
+
+public class Doctor {
     private String doctorID;
     private String name;
     private String specialist;
@@ -64,12 +66,6 @@ public class Doctor implements AbstractFunction {
     }
 
     public static void defaultDoctor(){
-        Doctor doctor1 = new Doctor("WaiHang", "Cardiologist", "waihang@gmail.com", "waihang123", 987654321);
-        Doctor doctor2 = new Doctor("Dek", "Oncologist", "dek@gmail.com", "dek123", 123456789);
-        Doctor doctor3 = new Doctor("Wheylong", "Dermatologist", "wheylong@gmail.com", "wheylong123", 912345678);
-    }
-
-    public void saveToArray(){
         
     }
 }

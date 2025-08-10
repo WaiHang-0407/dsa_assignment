@@ -1,10 +1,11 @@
-public class ArrayInt<T> implements MyList<T> {
+package adt;
+public class ArrayList<T> implements ListInterface<T> {
     private T[] data;
     private int size;
     private int capacity;
 
     @SuppressWarnings("unchecked")
-    public ArrayInt(){
+    public ArrayList(){
         capacity = 10;
         data = (T[]) new Object[capacity];
         size = 0;

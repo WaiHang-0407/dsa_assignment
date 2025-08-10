@@ -1,20 +1,16 @@
+package control;
 import java.util.Scanner;
 
-public class Main implements AbstractFunction{
-    public void saveToArray(){
+import utility.doctorUtility;
+import boundary.doctorBoundary;
 
-    }
-
+public class Main {
     public static void doctorMain(Scanner doctorScanner){
         int doctorChoice;
 
-        System.out.println("[1] Profile");
-        System.out.println("[2] Schedule");
-        System.out.println("[3] Availability");
-        System.out.println("[0] Back");
-
+        doctorBoundary.doctorMainBanner();
         System.out.print("Choice");
-        doctorChoice = Utility.checkInt(doctorScanner, 1, 3);
+        doctorChoice = doctorUtility.checkInt(doctorScanner, 1, 3);
 
         switch (doctorChoice) {
             case 1:
@@ -24,13 +20,15 @@ public class Main implements AbstractFunction{
                 schedule();
             case 3:
                 availability();
+            case 4:
+                return;
             default:
                 break;
         }
     }
 
     public static void doctorProfile(){
-
+        doctorBoundary.displayDoctor();
     }
 
     public static void schedule(){
@@ -44,7 +42,6 @@ public class Main implements AbstractFunction{
     public static void main(String args[]) {
         Scanner scanner = new Scanner(System.in);
 
-        defaultDoctor();
         doctorMain(scanner);
     }
 }
