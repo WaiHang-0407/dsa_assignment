@@ -10,25 +10,71 @@ public class Main {
 
         doctorBoundary.doctorMainBanner();
         System.out.print("Choice");
-        doctorChoice = doctorUtility.checkInt(doctorScanner, 1, 3);
+        doctorChoice = doctorUtility.checkInt(doctorScanner, 0, 3);
+        doctorUtility.clear();
 
         switch (doctorChoice) {
+            case 0:
+                return;
             case 1:
-                doctorProfile();
+                doctorProfile(doctorScanner);
                 break;
             case 2:
                 schedule();
+                break;
             case 3:
                 availability();
+        }
+    }
+
+    public static void doctorProfile(Scanner profileScanner){
+        int profileChoice;
+
+        doctorBoundary.doctorProfileBanner();
+
+        System.out.print("Choice");
+        profileChoice = doctorUtility.checkInt(profileScanner, 0, 4);
+        doctorUtility.clear();
+
+        switch (profileChoice){
+            case 0:
+                doctorMain(profileScanner);
+                break;
+            case 1:
+                viewDoctor(profileScanner);
+                break;
+            case 2:
+                editProfile(profileScanner);
+                break;
+            case 3:
+                addDoctor(profileScanner);
+                break;
             case 4:
-                return;
-            default:
+                removeDoctor(profileScanner);
                 break;
         }
     }
 
-    public static void doctorProfile(){
+    public static void viewDoctor(Scanner viewScanner){
         doctorBoundary.displayDoctor();
+        doctorUtility.pressAnyKeyToContinue(viewScanner);
+        doctorUtility.clear();
+        doctorProfile(viewScanner);
+    }
+
+    public static void editProfile(Scanner editScanner){
+
+    }
+
+    public static void addDoctor(Scanner addScanner){
+        doctorBoundary.addDoctorBanner();
+        doctorUtility.addDoctorFunction(addScanner);
+        doctorMain(addScanner);
+        doctorBoundary.displayDoctor();
+    }
+
+    public static void removeDoctor(Scanner removeScanner){
+
     }
 
     public static void schedule(){

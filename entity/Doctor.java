@@ -1,17 +1,23 @@
 package entity;
 
+import adt.ArrayList;
+import adt.ListInterface;
+
 public class Doctor {
     private String doctorID;
     private String name;
     private String specialist;
     private String email;
     private String password;
-    private int phoneNo;
+    private String phoneNo;
     private static int idCount = 1001;
 
-    public Doctor(String name, String specialist, String email, String password, int phoneNo) {
+    private static ListInterface<Doctor> doctors = new ArrayList<>();
+
+    public Doctor(String name, String specialist, String email, String password, String phoneNo) {
         this.doctorID = "D" + idCount++;
         this.name = name;
+        this.specialist = specialist;
         this.email = email;
         this.password = password;
         this.phoneNo = phoneNo;
@@ -37,7 +43,7 @@ public class Doctor {
         this.password = password;
     }
 
-    public void setPhoneNo(int phoneNo){
+    public void setPhoneNo(String phoneNo){
         this.phoneNo = phoneNo;
     }
 
@@ -61,11 +67,11 @@ public class Doctor {
         return this.password;
     }
 
-    public int getPhoneNo(){
+    public String getPhoneNo(){
         return this.phoneNo;
     }
 
-    public static void defaultDoctor(){
-        
+    public static ListInterface<Doctor> getDoctors() {
+        return doctors;
     }
 }

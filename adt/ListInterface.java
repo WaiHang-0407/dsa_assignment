@@ -1,4 +1,5 @@
 package adt;
+
 public interface ListInterface<T> {
     void add(T element);
     T get(int index);
