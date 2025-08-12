@@ -3,6 +3,7 @@ import java.util.Scanner;
 
 import utility.doctorUtility;
 import boundary.doctorBoundary;
+import dao.DoctorDAO;
 
 public class Main {
     public static void doctorMain(Scanner doctorScanner){
@@ -70,7 +71,7 @@ public class Main {
         doctorBoundary.addDoctorBanner();
         doctorUtility.addDoctorFunction(addScanner);
         doctorMain(addScanner);
-        doctorBoundary.displayDoctor();
+
     }
 
     public static void removeDoctor(Scanner removeScanner){
@@ -88,6 +89,10 @@ public class Main {
     public static void main(String args[]) {
         Scanner scanner = new Scanner(System.in);
 
+        DoctorDAO.readDoctorFile("doctor.txt");
+
+        DoctorDAO.initializeIDCounterFromFile("doctor.txt");
+        
         doctorMain(scanner);
     }
 }

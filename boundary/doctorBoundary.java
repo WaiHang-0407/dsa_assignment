@@ -6,6 +6,7 @@ import java.io.IOException;
 
 import adt.ArrayList;
 import adt.ListInterface;
+import entity.Doctor;
 
 public class doctorBoundary {
     public static void doctorMainBanner(){
@@ -71,6 +72,21 @@ public class doctorBoundary {
             System.err.println("Error reading file: " + e.getMessage());
         }
     }
+
+    // Used for testing
+    /*
+    public static void displayDoctorByList(){
+        ListInterface<Doctor> doctors = Doctor.getDoctors();
+        
+        for (Doctor d : doctors) {
+            System.out.println(d.getDoctorID() + d.getName() + d.getSpecialist() + d.getEmail() + d.getPassword() + d.getPhoneNo());
+        }
+
+        Doctor d = doctors.get(1);
+        System.out.println(d.getDoctorID());
+    }
+     */
+    
 
     public static void addDoctorBanner() {
         System.out.println("=================================");

@@ -1,0 +1,6 @@
+D1001,s,s,low@gmail.com,low,012356789
+D1002,dek,dek,dek@gmail.com,s,0123456789
+D1003,s,s,wl@gmail.com,wk,0123456789
+D1004,d,d,shwn@gmail.com,l,0123456789
+D1005,s,s,nigga@gmail.com,ns,0123456789
+D1006,r,r,b@gmail.com,b,0123456789

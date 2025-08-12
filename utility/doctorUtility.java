@@ -114,7 +114,7 @@ public class doctorUtility {
 
         Doctor newDoctor = new Doctor(doctorName, doctorSpecialist, doctorEmail, doctorPassword, doctorPhoneNo);
         doctors.add(newDoctor);
-        DoctorDAO.saveDoctorToFile("doctor.txt");
+        DoctorDAO.saveDoctorToFile("doctor.txt", newDoctor);
 
         System.out.println("New Doctor Added Successfully!");
         clear();
