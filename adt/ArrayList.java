@@ -1,4 +1,8 @@
 package adt;
+
+import java.util.Iterator;
+import java.util.NoSuchElementException;
+
 public class ArrayList<T> implements ListInterface<T> {
     private T[] data;
     private int size;
@@ -59,5 +63,22 @@ public class ArrayList<T> implements ListInterface<T> {
     @Override
     public int size(){
         return size;
+    }
+
+    public Iterator<T> iterator() {
+        return new Iterator<T>() {
+            private int currentIndex = 0;
+
+            @Override
+            public boolean hasNext() {
+                return currentIndex < size;
+            }
+
+            @Override
+            public T next() {
+                if (!hasNext()) throw new NoSuchElementException();
+                return (T) data[currentIndex++];
+            }
+        };
     }
 }

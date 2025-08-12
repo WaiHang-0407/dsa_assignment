@@ -10,7 +10,7 @@ public class Doctor {
     private String email;
     private String password;
     private String phoneNo;
-    private static int idCount = 1001;
+    static int idCount = 1001;
 
     private static ListInterface<Doctor> doctors = new ArrayList<>();
 

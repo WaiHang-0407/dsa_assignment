@@ -2,11 +2,10 @@ package boundary;
 
 import java.io.BufferedReader;
 import java.io.FileReader;
+import java.io.IOException;
 
 import adt.ArrayList;
 import adt.ListInterface;
-import entity.Doctor;
-import dao.DoctorDAO;
 
 public class doctorBoundary {
     public static void doctorMainBanner(){
@@ -31,79 +30,46 @@ public class doctorBoundary {
     }
 
     public static void displayDoctor(){
-        int idWidth = " ID".length();
-        int nameWidth = "Name".length();
-        int specialistWidth = "Specialist".length();
-        int emailWidth = "Email".length();
-        int passwordWidth = "Password".length();
-        int phoneNoWidth = "Phone No.".length();
+        try (BufferedReader doctorReader = new BufferedReader(new FileReader("doctor.txt"))) {
+            String line;
 
-        ListInterface<Doctor> doctors = Doctor.getDoctors();
+            int idWidth = "Doctor ID".length();
+            int nameWidth = "Name".length();
+            int specialistWidth = "Specialist".length();
+            int emailWidth = "Email".length();
+            int passwordWidth = "Password".length();
+            int phoneNoWidth = "Phone No".length();
 
-        try (BufferedReader doctorReader = new BufferedReader(new FileReader("doctor.txt"))){
-            // need changes for printing
-        } catch (Exception e){
+            ListInterface<String[]> rows = new ArrayList<>();
+            while ((line = doctorReader.readLine()) != null) {
+                String[] parts = line.split(",");
+                if (parts.length == 6) {
+                    rows.add(parts);
+
+                    if (parts[0].length() > idWidth) idWidth = parts[0].length();
+                    if (parts[1].length() > nameWidth) nameWidth = parts[1].length();
+                    if (parts[2].length() > specialistWidth) specialistWidth = parts[2].length();
+                    if (parts[3].length() > emailWidth) emailWidth = parts[3].length();
+                    if (parts[4].length() > passwordWidth) passwordWidth = parts[4].length();
+                    if (parts[5].length() > phoneNoWidth) phoneNoWidth = parts[5].length();
+                }
+            }
+
+            String format = "| %-" + idWidth + "s | %-" + nameWidth + "s | %-" + specialistWidth + "s | %-" +
+                    emailWidth + "s | %-" + passwordWidth + "s | %-" + phoneNoWidth + "s |\n";
+
+            System.out.printf(format, "Doctor ID", "Name", "Specialist", "Email", "Password", "Phone No");
+
+            int totalWidth = idWidth + nameWidth + specialistWidth + emailWidth + passwordWidth + phoneNoWidth + 19;
+            System.out.println("-".repeat(totalWidth));
+
+            for (String[] parts : rows) {
+                System.out.printf(format, parts[0], parts[1], parts[2], parts[3], parts[4], parts[5]);
+            }
+
+        } catch (IOException e) {
             System.err.println("Error reading file: " + e.getMessage());
         }
-
-        if (doctors.isEmpty()){
-            System.out.println("No doctors available.");
-        }        
-        
-        for (int i = 0; i < doctors.size(); i++){
-                Doctor d = doctors.get(i);
-                if (d.getDoctorID().length() > idWidth){
-                    idWidth = d.getDoctorID().length();
-                }
-
-                if (d.getName().length() > nameWidth){
-                    nameWidth = d.getName().length();
-                }
-
-                if (d.getSpecialist() != null && d.getSpecialist().length() > specialistWidth){
-                    specialistWidth = d.getSpecialist().length();
-                }
-
-                if (d.getEmail().length() > emailWidth){
-                    emailWidth = d.getEmail().length();
-                }
-
-                if (d.getPassword().length() > passwordWidth){
-                    passwordWidth = d.getPassword().length();
-                }
-
-                String phoneNoString = String.valueOf(d.getPhoneNo());
-                if (phoneNoString.length() > phoneNoWidth){
-                    phoneNoWidth = phoneNoString.length();
-                }
-            }
-
-            String format = "| %-" + (idWidth + 7) + "s| %-" + (nameWidth + 7) + "s| %-" + (specialistWidth + 7) + "s| %-" + (emailWidth + 7) + "s| %-" +  (passwordWidth + 7) + "s| %-" + (phoneNoWidth + 7) + "s|\n";
-
-            System.out.print("+");
-            for (int i = 0; i < idWidth + nameWidth + specialistWidth + emailWidth + passwordWidth + phoneNoWidth + 53; i++){
-                System.out.print("-");
-            }
-            System.out.println("+");
-
-            System.out.printf(format, "Doctor ID", "Name", "Specialist", "Email", "Password", "Phone No.");
-            System.out.print("|");
-            for (int i = 0; i < idWidth + nameWidth + specialistWidth + emailWidth + passwordWidth + phoneNoWidth + 53; i++){
-                System.out.print("-");
-            }
-            System.out.println("|");
-
-            for (int i = 0; i < doctors.size(); i++){
-                Doctor d = doctors.get(i);
-                System.out.printf(format, d.getDoctorID(), d.getName(), d.getSpecialist(), d.getEmail(), d.getPassword(), d.getPhoneNo());
-                System.out.println("");
-            }
-
-            System.out.print("+");
-            for (int i = 0; i < idWidth + nameWidth + specialistWidth + emailWidth + passwordWidth + phoneNoWidth + 53; i++){
-                System.out.print("-");
-            }
-            System.out.println("+");
     }
 
     public static void addDoctorBanner() {
