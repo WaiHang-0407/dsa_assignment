@@ -6,4 +6,5 @@ public interface ListInterface<T> extends Iterable<T> {
     void remove(int index);
     int size();
     boolean isEmpty();
+    void clear();
 }

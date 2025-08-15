@@ -58,24 +58,29 @@ public class Main {
 
     public static void viewDoctor(Scanner viewScanner){
         doctorBoundary.displayDoctor();
+        doctorBoundary.displayDoctorByList();
         doctorUtility.pressAnyKeyToContinue(viewScanner);
         doctorUtility.clear();
         doctorProfile(viewScanner);
     }
 
     public static void editProfile(Scanner editScanner){
-
+        doctorBoundary.editDoctorBanner();
+        doctorBoundary.displayDoctor();
+        doctorUtility.editDoctorFunction(editScanner);
+        doctorProfile(editScanner);
     }
 
     public static void addDoctor(Scanner addScanner){
         doctorBoundary.addDoctorBanner();
         doctorUtility.addDoctorFunction(addScanner);
-        doctorMain(addScanner);
-
+        doctorProfile(addScanner);
     }
 
     public static void removeDoctor(Scanner removeScanner){
-
+        doctorBoundary.removeDoctorBanner();
+        doctorUtility.removeDoctorFunction(removeScanner);
+        doctorProfile(removeScanner);
     }
 
     public static void schedule(){

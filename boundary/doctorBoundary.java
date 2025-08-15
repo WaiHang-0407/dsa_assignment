@@ -62,7 +62,9 @@ public class doctorBoundary {
             System.out.printf(format, "Doctor ID", "Name", "Specialist", "Email", "Password", "Phone No");
 
             int totalWidth = idWidth + nameWidth + specialistWidth + emailWidth + passwordWidth + phoneNoWidth + 19;
-            System.out.println("-".repeat(totalWidth));
+            System.out.print("|");
+            System.out.print("-".repeat(totalWidth - 2));
+            System.out.println("|");
 
             for (String[] parts : rows) {
                 System.out.printf(format, parts[0], parts[1], parts[2], parts[3], parts[4], parts[5]);
@@ -74,18 +76,16 @@ public class doctorBoundary {
     }
 
     // Used for testing
-    /*
+    
     public static void displayDoctorByList(){
         ListInterface<Doctor> doctors = Doctor.getDoctors();
         
-        for (Doctor d : doctors) {
-            System.out.println(d.getDoctorID() + d.getName() + d.getSpecialist() + d.getEmail() + d.getPassword() + d.getPhoneNo());
+        for (int i = 0; i < doctors.size(); i++){
+            Doctor d = doctors.get(i);
+            System.out.println(d.getDoctorID());
         }
-
-        Doctor d = doctors.get(1);
-        System.out.println(d.getDoctorID());
     }
-     */
+     
     
 
     public static void addDoctorBanner() {
@@ -94,5 +94,24 @@ public class doctorBoundary {
         System.out.println("=================================");
     }
 
-    
+    public static void removeDoctorBanner() {
+        System.out.println("=================================");
+        System.out.println("        Remove Doctor");
+        System.out.println("=================================");
+    }
+
+    public static void editDoctorBanner() {
+        System.out.println("=================================");
+        System.out.println("        Edit Doctor");
+        System.out.println("=================================");
+    }
+
+    public static void editChoiceBanner(){
+        System.out.println("[1] Name");
+        System.out.println("[2] Specialist");
+        System.out.println("[3] Email");
+        System.out.println("[4] Password");
+        System.out.println("[5] Phone No.");
+        System.out.println("[0] Back");
+    }
 }

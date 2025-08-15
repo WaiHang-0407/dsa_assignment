@@ -20,6 +20,21 @@ public class DoctorDAO {
         }
     }
 
+    public static void saveDoctorToFile(String filename){
+        ListInterface<Doctor> doctors = Doctor.getDoctors();
+
+        try (BufferedWriter doctorWriter = new BufferedWriter(new FileWriter(filename, false))){
+            for (int i = 0; i < doctors.size(); i++) {
+                Doctor d = doctors.get(i);
+                String line = d.getDoctorID() + "," + d.getName() + "," + d.getSpecialist() + "," + d.getEmail() + "," + d.getPassword() + "," + d.getPhoneNo();
+                doctorWriter.write(line);
+                doctorWriter.newLine();
+            }
+        } catch (IOException e) {
+            System.out.println("Error writing file: " + e.getMessage());
+        }
+    }
+
     public static void readDoctorFile(String filename){
         ListInterface<Doctor> doctors = Doctor.getDoctors();
         int maxID = 0;
@@ -36,11 +51,12 @@ public class DoctorDAO {
                     String doctorPassword = parts[4];
                     String doctorPhoneNo = parts[5];
 
-                    Doctor doctor = new Doctor(doctorName, doctorSpecialist, doctorEmail, doctorPassword, doctorPhoneNo);
-                    doctors.add(doctor);
+                    Doctor doctor = new Doctor(doctorID, doctorName, doctorSpecialist, doctorEmail, doctorPassword, doctorPhoneNo);
 
                     try {
-                        int num = Integer.parseInt(doctorID.substring(1)); // e.g., D1001 → 1001
+                        int num = Integer.parseInt(doctorID.substring(1));
+                        doctors.add(doctor);
+
                         if (num > maxID) {
                             maxID = num;
                         }
