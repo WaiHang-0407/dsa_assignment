@@ -76,12 +76,12 @@ public class doctorBoundary {
     }
 
     // Used for testing
-    
     public static void displayDoctorByList(){
         ListInterface<Doctor> doctors = Doctor.getDoctors();
         
         for (int i = 0; i < doctors.size(); i++){
             Doctor d = doctors.get(i);
+            System.out.println(i);
             System.out.println(d.getDoctorID());
         }
     }

@@ -142,12 +142,7 @@ public class doctorUtility {
                 Doctor d = doctors.get(i);
 
                 if (d != null && d.getDoctorID().toUpperCase().trim().equals(doctorID)){
-                    d.setDoctorID("");
-                    d.setName("");
-                    d.setSpecialist("");
-                    d.setEmail("");
-                    d.setPassword("");
-                    d.setPhoneNo("");
+                    doctors.remove(i);
                     DoctorDAO.saveDoctorToFile("doctor.txt");
                     System.out.println("Doctor " + doctorID + " removed successfully!");
                     removed = true;
@@ -177,14 +172,13 @@ public class doctorUtility {
 
             boolean found = false;
 
+            if (doctors.isEmpty()){
+                System.out.println("Doctor is Empty.");
+                return;
+            }
+
             for (int i = 0; i < doctors.size(); i++){
                 Doctor d = doctors.get(i);
-
-                // check empty not done
-                if (d.getDoctorID().trim().equals("")){
-                    System.out.println("Doctor " + id + " not found.");
-                    return;
-                }
 
                 if (d != null && d.getDoctorID().toUpperCase().trim().equals(id)){
                     found = true;
